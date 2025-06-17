@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegetarian Recipes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    #menu-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .menu-item {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 250px;
+      margin: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 15px;
+    }
+    .menu-item h3 {
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+    #info-box {
+      display: none;
+      background-color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 600px;
+      margin: 20px auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+    #info-box h2 {
+      margin-bottom: 20px;
+    }
+    #info-box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    #info-box ul li {
+      margin: 5px 0;
+    }
+    #info-box #procedure-box {
+      max-height: 300px;
+      overflow-y: auto;
+      margin: 20px 0;
+    }
+    #close-btn {
+      background-color: #f44336;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    #close-btn:hover {
+      background-color: #d32f2f;
+    }
+  </style>
+</head>
+<body>
+  <div id="menu-container">
+    <div class="menu-item" onclick="showInfo('veg-curry')">
+      <img src="https://thumbs.dreamstime.com/b/curry-icon-logo-vector-design-illustration-isolated-white-background-curry-icon-food-logo-vector-design-illustration-isolated-231539348.jpg" alt="Veg Curry">
+      <h3>Veg Curry</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-biryani')">
+      <img src="https://img.icons8.com/ios/100/000000/rice-bowl.png" alt="Veg Biryani">
+      <h3>Veg Biryani</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-pizza')">
+      <img src="https://img.icons8.com/ios/100/000000/pizza.png" alt="Veg Pizza">
+      <h3>Veg Pizza</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-burger')">
+      <img src="https://cdn-icons-png.flaticon.com/512/1686/1686885.png" alt="Veg Burger">
+      <h3>Veg Burger</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('paneer-tikka')">
+      <img src="https://media.istockphoto.com/id/2060747515/vector/beef-tikka-boti-on-sticks-outline-concept-grilled-meat-chunks-vector-design-fast-food-hand.jpg?s=612x612&w=0&k=20&c=KumJ__Jy5dpOKx4jYEs7VirQ5QwEOwa-qsee9w6YU_w=" alt="Paneer Tikka">
+      <h3>Paneer Tikka</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-pasta')">
+      <img src="https://static.thenounproject.com/png/3096520-200.png" alt="Veg Pasta">
+      <h3>Veg Pasta</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-noodles')">
+      <img src="https://img.icons8.com/ios/100/000000/noodles.png" alt="Veg Noodles">
+      <h3>Veg Noodles</h3>
+    </div>
+    <div class="menu-item" onclick="showInfo('veg-spring-roll')">
+      <img src="https://cdn-icons-png.flaticon.com/512/706/706956.png" alt="Veg Spring Roll">
+      <h3>Veg Spring Roll</h3>
+    </div>
+  </div>
+
+  <div id="info-box">
+    <h2 id="item-title"></h2>
+    <div id="item-details"></div>
+    <button id="close-btn" onclick="closeInfo()">Close</button>
+  </div>
+
+  <script>
+    function showInfo(item) {
+      const infoBox = document.getElementById('info-box');
+      const itemTitle = document.getElementById('item-title');
+      const itemDetails = document.getElementById('item-details');
+      
+      if(item === 'veg-curry') {
+        itemTitle.textContent = 'Veg Curry';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 cups mixed vegetables (carrot, beans, peas, potato)</li>
+            <li>1 onion, chopped</li>
+            <li>2 tomatoes, chopped</li>
+            <li>1 tsp ginger-garlic paste</li>
+            <li>1/2 cup yogurt</li>
+            <li>1 tsp turmeric powder</li>
+            <li>1 tsp garam masala</li>
+            <li>Salt to taste</li>
+            <li>2 tbsp oil</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Heat oil, add onions, and sauté until golden brown.</p>
+            <p>2. Add ginger-garlic paste, chopped tomatoes, and cook till soft.</p>
+            <p>3. Add vegetables, turmeric, garam masala, and salt. Cook for 10 minutes.</p>
+            <p>4. Add yogurt and simmer for 15-20 minutes until vegetables are tender.</p>
+          </div>
+          
+        `;
+      } else if(item === 'veg-biryani') {
+        itemTitle.textContent = 'Veg Biryani';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup basmati rice</li>
+            <li>1 cup mixed vegetables (carrot, peas, beans)</li>
+            <li>1 onion, thinly sliced</li>
+            <li>2 tomatoes, chopped</li>
+            <li>1 tsp biryani masala</li>
+            <li>1/2 tsp turmeric powder</li>
+            <li>2 tbsp ghee or oil</li>
+            <li>Salt to taste</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Rinse and soak rice for 30 minutes. Cook the rice and set aside.</p>
+            <p>2. Heat ghee, sauté onions until golden, and add tomatoes and spices.</p>
+            <p>3. Add vegetables and cook for 5-7 minutes. Mix in the rice and cook together for another 10 minutes.</p>
+          </div>
+          
+        `;
+      } else if(item === 'veg-pizza') {
+        itemTitle.textContent = 'Veg Pizza';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 pizza base</li>
+            <li>1/2 cup pizza sauce</li>
+            <li>1 cup mozzarella cheese</li>
+            <li>1/2 cup bell peppers, chopped</li>
+            <li>1/4 cup olives, sliced</li>
+            <li>1/4 cup onions, chopped</li>
+            <li>1/4 tsp oregano</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Preheat oven to 200°C (392°F). Place pizza base on a baking tray.</p>
+            <p>2. Spread pizza sauce, sprinkle cheese, and top with vegetables.</p>
+            <p>3. Bake for 10-12 minutes or until cheese melts and base is crisp.</p>
+          </div>
+          
+        `;
+      } else if(item === 'veg-burger') {
+        itemTitle.textContent = 'Veg Burger';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mashed potato</li>
+            <li>1/2 cup mixed vegetables (carrot, peas)</li>
+            <li>1/4 cup breadcrumbs</li>
+            <li>1 tbsp flour</li>
+            <li>1/2 tsp garam masala</li>
+            <li>1/4 tsp chili powder</li>
+            <li>Burger buns</li>
+            <li>Lettuce, tomato, cucumber for topping</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Make patty mixture by combining mashed potato, veggies, breadcrumbs, and spices.</p>
+            <p>2. Shape the mixture into patties and shallow fry until golden brown.</p>
+            <p>3. Assemble burgers with lettuce, tomato, cucumber, and patties.</p>
+          </div>
+          
+        `;
+      } else if(item === 'paneer-tikka') {
+        itemTitle.textContent = 'Paneer Tikka';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>200g paneer (cottage cheese), cubed</li>
+            <li>1/2 cup yogurt</li>
+            <li>1 tsp ginger-garlic paste</li>
+            <li>1 tsp red chili powder</li>
+            <li>1 tbsp lemon juice</li>
+            <li>Salt to taste</li>
+            <li>1 tbsp oil</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Mix yogurt, spices, and lemon juice to make marinade.</p>
+            <p>2. Coat paneer cubes with marinade and refrigerate for 1 hour.</p>
+            <p>3. Skewer and grill paneer until slightly charred.</p>
+          </div>
+         
+        `;
+      } else if(item === 'veg-pasta') {
+        itemTitle.textContent = 'Veg Pasta';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup pasta (penne, fusilli, or spaghetti)</li>
+            <li>1/2 cup mixed vegetables (capsicum, carrot, peas)</li>
+            <li>1/4 cup tomato sauce</li>
+            <li>1/2 tsp garlic, minced</li>
+            <li>1 tbsp olive oil</li>
+            <li>1/4 tsp oregano</li>
+            <li>Salt and pepper to taste</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Cook pasta according to package instructions and set aside.</p>
+            <p>2. Heat olive oil, sauté garlic, and add vegetables.</p>
+            <p>3. Mix in tomato sauce, pasta, oregano, salt, and pepper. Toss well.</p>
+          </div>
+          
+        `;
+      } else if(item === 'veg-noodles') {
+        itemTitle.textContent = 'Veg Noodles';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup noodles</li>
+            <li>1/2 cup mixed vegetables (capsicum, carrot, beans)</li>
+            <li>1 tbsp soy sauce</li>
+            <li>1 tsp vinegar</li>
+            <li>1 tsp ginger-garlic paste</li>
+            <li>Salt and pepper to taste</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Cook noodles and drain. Set aside.</p>
+            <p>2. Heat oil, sauté ginger-garlic paste, and add vegetables.</p>
+            <p>3. Add soy sauce, vinegar, noodles, salt, and pepper. Stir fry for 5 minutes.</p>
+          </div>
+          
+        `;
+      } else if(item === 'veg-spring-roll') {
+        itemTitle.textContent = 'Veg Spring Roll';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mixed vegetables (cabbage, carrot, mushrooms)</li>
+            <li>Spring roll wrappers</li>
+            <li>1 tbsp soy sauce</li>
+            <li>1 tsp ginger-garlic paste</li>
+            <li>Salt and pepper to taste</li>
+            <li>Oil for frying</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <div id="procedure-box">
+            <p>1. Sauté vegetables with ginger-garlic paste, soy sauce, and spices.</p>
+            <p>2. Roll the mixture into spring roll wrappers and seal the edges.</p>
+            <p>3. Fry the spring rolls until golden brown.</p>
+          </div>
+          
+        `;
+      }
+
+      infoBox.style.display = 'block';
+    }
+
+    function closeInfo() {
+      document.getElementById('info-box').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

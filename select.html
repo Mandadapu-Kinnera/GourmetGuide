@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cooking Ingredients Selector</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f8f9fa, #ffe4b3);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1 {
+      color: #092d6f;
+      margin-bottom: 20px;
+    }
+
+    p {
+      color: #555;
+      margin-bottom: 20px;
+      font-size: 1rem;
+    }
+
+    .ingredients-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .ingredient {
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 120px;
+      text-align: center;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .ingredient img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+    }
+
+    .ingredient:hover {
+      transform: scale(1.1);
+      border-color: #092d6f;
+    }
+
+    .ingredient.selected {
+      border-color: #092d6f;
+      background: #e3f2fd;
+    }
+
+    .button {
+      background: #092d6f;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s;
+    }
+
+    .button:hover {
+      background: #031262;
+    }
+
+    .recipes-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .recipe {
+      background: #fff;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      width: 200px;
+      margin: 10px auto;
+      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .recipe img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 10px;
+    }
+
+    .recipe h3 {
+      color: #092d6f;
+      margin-bottom: 10px;
+    }
+
+    .recipe p {
+      font-size: 0.9rem;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h1>Cooking Ingredients Selector</h1>
+  <p>Select the ingredients you have, and we'll suggest recipes you can prepare!</p>
+
+  <!-- Ingredients Section -->
+  <div class="ingredients-container">
+    <div class="ingredient" onclick="toggleSelection(this, 'tomato')">
+      <img src="https://img.icons8.com/fluency/96/tomato.png" alt="Tomato">
+      <p>Tomato</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'potato')">
+      <img src="https://img.icons8.com/color/96/potato.png" alt="Potato">
+      <p>Potato</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'chicken')">
+      <img src="https://img.icons8.com/fluency/96/chicken.png" alt="Chicken">
+      <p>Chicken</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'onion')">
+      <img src="https://img.icons8.com/color/96/onion.png" alt="Onion">
+      <p>Onion</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'egg')">
+      <img src="https://cdn-icons-png.flaticon.com/512/1682/1682194.png" alt="Egg">
+      <p>Egg</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'cheese')">
+      <img src="https://img.icons8.com/color/96/cheese.png" alt="Cheese">
+      <p>Cheese</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'rice')">
+      <img src="https://img.icons8.com/color/96/rice-bowl.png" alt="Rice">
+      <p>Rice</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'garlic')">
+      <img src="https://img.icons8.com/color/96/garlic.png" alt="Garlic">
+      <p>Garlic</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'carrot')">
+      <img src="https://img.icons8.com/color/96/carrot.png" alt="Carrot">
+      <p>Carrot</p>
+    </div>
+    <div class="ingredient" onclick="toggleSelection(this, 'spinach')">
+      <img src="https://img.icons8.com/color/96/spinach.png" alt="Spinach">
+      <p>Spinach</p>
+    </div>
+  </div>
+
+  <button class="button" onclick="generateRecipes()">Suggest Recipes</button>
+
+  <!-- Recipes Section -->
+  <div id="recipes" class="recipes-container"></div>
+
+  <script>
+    const selectedIngredients = new Set();
+
+    function toggleSelection(element, ingredient) {
+      if (selectedIngredients.has(ingredient)) {
+        selectedIngredients.delete(ingredient);
+        element.classList.remove('selected');
+      } else {
+        selectedIngredients.add(ingredient);
+        element.classList.add('selected');
+      }
+    }
+
+    function generateRecipes() {
+      const recipesContainer = document.getElementById('recipes');
+      recipesContainer.innerHTML = '';
+
+      if (selectedIngredients.size === 0) {
+        recipesContainer.innerHTML = '<p>Please select at least one ingredient!</p>';
+        return;
+      }
+
+      const recipes = {
+        'Tomato Soup': ['tomato', 'onion', 'garlic'],
+        'Potato Curry': ['potato', 'onion', 'tomato'],
+        'Chicken Stir Fry': ['chicken', 'onion', 'carrot'],
+        'Cheese Omelette': ['egg', 'cheese'],
+        'Vegetable Fried Rice': ['rice', 'carrot', 'onion'],
+        'Garlic Spinach': ['garlic', 'spinach'],
+        'Carrot Soup': ['carrot', 'onion', 'garlic'],
+        'Chicken Curry': ['chicken', 'onion', 'garlic', 'tomato']
+      };
+
+      for (const [recipeName, ingredients] of Object.entries(recipes)) {
+        if ([...selectedIngredients].every(i => ingredients.includes(i))) {
+          const recipeCard = `
+            <div class="recipe">
+              <h3>${recipeName}</h3>
+              <p>Ingredients: ${ingredients.join(', ')}</p>
+            </div>`;
+          recipesContainer.innerHTML += recipeCard;
+        }
+      }
+
+      if (recipesContainer.innerHTML === '') {
+        recipesContainer.innerHTML = '<p>No recipes match your ingredients. Try selecting more!</p>';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recipe Maker Sign-Up</title>
+  <style>
+    /* General reset and body styling */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .container {
+      background: #fff;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      animation: zoomIn 1s ease-in-out;
+    }
+
+    .container h1 {
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      color: #ff6f61;
+    }
+
+    .form-group {
+      margin: 1.2rem 0;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+      background: #fefefe;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group input:focus {
+      border-color: #ff6f61;
+      outline: none;
+      box-shadow: 0 0 8px rgba(255, 111, 97, 0.5);
+    }
+
+    .signup-btn {
+      background: linear-gradient(to right, #ff6f61, #ff9478);
+      color: #fff;
+      padding: 0.8rem 2.5rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .signup-btn:hover {
+      box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
+      transform: scale(1.05);
+    }
+
+    .icon {
+      font-size: 3rem;
+      color: #ff6f61;
+      margin-bottom: 1.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    .footer {
+      margin-top: 1.8rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .footer a {
+      color: #ff6f61;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Icon for Recipe Maker -->
+    <div class="icon">
+      🥗
+    </div>
+    <h1>Create Your Account</h1>
+    <form id="signupForm">
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username" required>
+      </div>
+      <div class="form-group">
+        <input type="email" id="email" placeholder="Email" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <div class="form-group">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+      </div>
+      <button type="submit" class="signup-btn">Sign Up</button>
+    </form>
+    <div class="footer">
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+  </div>
+  <script>
+    const signupForm = document.getElementById('signupForm');
+
+    signupForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (password !== confirmPassword) {
+        alert('Passwords do not match. Please try again.');
+        return;
+      }
+
+      alert(`Account created successfully! Welcome, ${username}.`);
+      window.location.href = 'login.html'; // Redirect to login page after successful sign-up
+    });
+  </script>
+</body>
+</html>

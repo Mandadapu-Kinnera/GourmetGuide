@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegetable Recipes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .menu {
+      width: 30%;
+      padding: 20px;
+      background-color: #f4f4f4;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .menu h2 {
+      text-align: center;
+      color: #333;
+    }
+    .menu ul {
+      list-style: none;
+      padding: 0;
+    }
+    .menu li {
+      padding: 10px;
+      background-color: #fff;
+      margin-bottom: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    .menu li:hover {
+      background-color: #e0e0e0;
+    }
+    #info-box {
+      width: 60%;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: none;
+    }
+    #info-box h3 {
+      color: #333;
+    }
+    #info-box ul {
+      list-style: none;
+      padding: 0;
+    }
+    #info-box p {
+      color: #555;
+    }
+    .close-btn {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      float: right;
+    }
+    .close-btn:hover {
+      background-color: #d32f2f;
+    }
+    .close-btn:focus {
+      outline: none;
+    }
+    #info-box img {
+      width: 100%;
+      height: auto;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <h2>Vegetable Recipes</h2>
+    <ul>
+      <li onclick="showRecipe('veg-salad')">Veg Salad</li>
+      <li onclick="showRecipe('veg-juice')">Veg Juice</li>
+      <li onclick="showRecipe('veg-burger')">Veg Burger</li>
+      <li onclick="showRecipe('veg-pasta')">Veg Pasta</li>
+      <li onclick="showRecipe('veg-wrap')">Veg Wrap</li>
+      <li onclick="showRecipe('veg-pizza')">Veg Pizza</li>
+      <li onclick="showRecipe('veg-curry')">Veg Curry</li>
+      <li onclick="showRecipe('veg-biryani')">Veg Biryani</li>
+      <li onclick="showRecipe('veg-fries')">Veg Fries</li>
+      <li onclick="showRecipe('veg-sandwich')">Veg Sandwich</li>
+    </ul>
+  </div>
+
+  <div id="info-box">
+    <button class="close-btn" onclick="closeInfo()">&#10006;</button>
+    <h2 id="item-title"></h2>
+    <div id="item-details"></div>
+  </div>
+
+  <script>
+    function showRecipe(item) {
+      var itemTitle = document.getElementById('item-title');
+      var itemDetails = document.getElementById('item-details');
+      var infoBox = document.getElementById('info-box');
+      
+      if(item === 'veg-salad') {
+        itemTitle.textContent = 'Veg Salad';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mixed vegetables (cucumber, tomato, carrot)</li>
+            <li>1/4 cup chopped onion</li>
+            <li>1 tbsp olive oil</li>
+            <li>1 tbsp lemon juice</li>
+            <li>Salt and pepper to taste</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Combine all the vegetables in a bowl.</p>
+          <p>2. Add olive oil, lemon juice, salt, and pepper, and mix well.</p>
+          <p>3. Serve chilled as a fresh side dish.</p>
+          
+        `;
+      } else if(item === 'veg-juice') {
+        itemTitle.textContent = 'Veg Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cucumber</li>
+            <li>1 carrot</li>
+            <li>1/2 cup spinach</li>
+            <li>1/2 lemon</li>
+            <li>1/4 inch ginger</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend all ingredients with water until smooth.</p>
+          <p>2. Strain if necessary and serve chilled.</p>
+          
+        `;
+      } else if(item === 'veg-burger') {
+        itemTitle.textContent = 'Veg Burger';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 potato, boiled</li>
+            <li>1/4 cup bread crumbs</li>
+            <li>1/4 cup chopped vegetables</li>
+            <li>1 tbsp mayonnaise</li>
+            <li>1 burger bun</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Mash the boiled potato and mix with vegetables and bread crumbs.</p>
+          <p>2. Form into patties and cook until golden brown.</p>
+          <p>3. Assemble with a bun, mayonnaise, and serve.</p>
+        `;
+      } else if(item === 'veg-pasta') {
+        itemTitle.textContent = 'Veg Pasta';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup pasta</li>
+            <li>1/2 cup mixed vegetables (bell peppers, carrots)</li>
+            <li>1 tbsp olive oil</li>
+            <li>1 tbsp garlic</li>
+            <li>Salt and pepper to taste</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Boil the pasta until soft.</p>
+          <p>2. Sauté garlic and vegetables in olive oil.</p>
+          <p>3. Mix pasta with the sautéed vegetables, season, and serve.</p>
+          
+        `;
+      } else if(item === 'veg-wrap') {
+        itemTitle.textContent = 'Veg Wrap';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 whole wheat wrap</li>
+            <li>1/2 cup grilled vegetables</li>
+            <li>1 tbsp hummus</li>
+            <li>1/4 cup lettuce</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Spread hummus on the wrap.</p>
+          <p>2. Add grilled vegetables and lettuce.</p>
+          <p>3. Roll and serve as a healthy snack.</p>
+          
+        `;
+      } else if(item === 'veg-pizza') {
+        itemTitle.textContent = 'Veg Pizza';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 pizza base</li>
+            <li>1/2 cup tomato sauce</li>
+            <li>1/2 cup mozzarella cheese</li>
+            <li>1/4 cup chopped vegetables (onion, capsicum, mushrooms)</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Spread tomato sauce on the pizza base.</p>
+          <p>2. Add cheese and vegetables on top.</p>
+          <p>3. Bake for 15 minutes and serve hot.</p>
+          
+        `;
+      } else if(item === 'veg-curry') {
+        itemTitle.textContent = 'Veg Curry';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mixed vegetables (carrot, beans, potato)</li>
+            <li>1 onion, chopped</li>
+            <li>1 tomato, chopped</li>
+            <li>1 tbsp curry powder</li>
+            <li>1 cup coconut milk</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Sauté onion and tomato in a pan until soft.</p>
+          <p>2. Add curry powder and vegetables, cook until tender.</p>
+          <p>3. Add coconut milk, cook for a few more minutes and serve hot.</p>
+          
+        `;
+      } else if(item === 'veg-biryani') {
+        itemTitle.textContent = 'Veg Biryani';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup rice</li>
+            <li>1/2 cup mixed vegetables (carrot, peas, beans)</li>
+            <li>1 onion, thinly sliced</li>
+            <li>1 tbsp garam masala</li>
+            <li>1 cup yogurt</li>
+            <li>1 tbsp ghee</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Fry onions in ghee until golden brown.</p>
+          <p>2. Add vegetables and spices, cook for a few minutes.</p>
+          <p>3. Add rice, yogurt, and cook until done.</p>
+          
+        `;
+      } else if(item === 'veg-fries') {
+        itemTitle.textContent = 'Veg Fries';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 large potatoes, cut into strips</li>
+            <li>1 tbsp olive oil</li>
+            <li>Salt and pepper to taste</li>
+            <li>1/4 tsp paprika</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Toss potato strips in olive oil, salt, pepper, and paprika.</p>
+          <p>2. Bake at 400°F for 20-25 minutes until crispy.</p>
+          <p>3. Serve with ketchup or your favorite dip.</p>
+         
+        `;
+      } else if(item === 'veg-sandwich') {
+        itemTitle.textContent = 'Veg Sandwich';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 slices of whole wheat bread</li>
+            <li>1/2 cucumber, sliced</li>
+            <li>1 tomato, sliced</li>
+            <li>1 tbsp mayonnaise</li>
+            <li>1/4 cup lettuce</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Spread mayonnaise on bread slices.</p>
+          <p>2. Layer cucumber, tomato, and lettuce between the slices.</p>
+          <p>3. Serve as a light snack or breakfast.</p>
+          
+        `;
+      }
+      
+      // Show the recipe
+      infoBox.style.display = 'block';
+    }
+    
+    function closeInfo() {
+      document.getElementById('info-box').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+
+
+

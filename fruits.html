@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fruit Dishes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      width: 80%;
+    }
+
+    .recipe-item {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin: 10px;
+      padding: 20px;
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .recipe-item:hover {
+      transform: scale(1.05);
+    }
+
+     .recipe-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    } 
+
+    .info-box {
+      position: fixed;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      display: none;
+      z-index: 999;
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+
+    .info-box h2 {
+      margin-top: 0;
+    }
+
+    .info-box h3 {
+      margin-bottom: 5px;
+    }
+
+    .info-box ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .info-box ul li {
+      margin-bottom: 5px;
+    }
+
+    .info-box .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .info-box .close-btn:hover {
+      color: red;
+    }
+
+    .recipe-selection {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .recipe-selection p {
+      margin-bottom: 10px;
+    }
+    
+    .info-box img {
+  width: 60%; 
+  height: auto;
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Recipe items -->
+    <div class="recipe-item" onclick="showRecipe('fruit-salad')">
+      <img src="https://thumbs.dreamstime.com/b/fresh-fruit-salad-icon-minimalist-black-white-bowl-illustration-fresh-fruit-salad-icon-minimalist-black-white-bowl-327223817.jpg" alt="Fruit Salad">
+      <p>Fruit Salad</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('fruit-juice')">
+      <img src="https://thumbs.dreamstime.com/b/fruit-juice-icon-logo-sign-vector-outline-black-white-color-fruit-juice-icon-logo-sign-vector-outline-329960651.jpg" alt="Fruit Juice">
+      <p>Fruit Juice</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('smoothie')">
+      <img src="https://cdn-icons-png.flaticon.com/512/4080/4080651.png" alt="Smoothie">
+      <p>Smoothie</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('fruit-chaat')">
+      <img src="https://img.icons8.com/ios/100/000000/salad.png" alt="Fruit Chaat">
+      <p>Fruit Chaat</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('fruit-pudding')">
+      <img src="https://img.icons8.com/ios/100/000000/cake.png" alt="Fruit Pudding">
+      <p>Fruit Pudding</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('fruit-smoothie-bowl')">
+      <img src="https://static.vecteezy.com/system/resources/previews/001/972/288/non_2x/tropical-smoothie-drink-icon-cartoon-in-black-and-white-free-vector.jpg" alt="Fruit Smoothie Bowl">
+      <p>Fruit Smoothie Bowl</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('fruit-ice-cream')">
+      <img src="https://cdn-icons-png.flaticon.com/512/325/325515.png" alt="Fruit Ice Cream">
+      <p>Fruit Ice Cream</p>
+    </div>
+    <div class="recipe-item" onclick="showRecipe('mango-lassi')">
+      <img src="https://thumbs.dreamstime.com/b/mango-lassi-indian-cuisine-line-icon-vector-illustration-sign-isolated-contour-symbol-black-317503339.jpg" alt="Mango Lassi">
+      <p>Mango Lassi</p>
+    </div>
+  </div>
+
+  <div class="recipe-selection">
+    
+  </div>
+
+  <div id="info-box" class="info-box">
+    <span class="close-btn" onclick="closeInfo()">✖</span>
+    <h2 id="item-title"></h2>
+    <div id="item-details"></div>
+  </div>
+
+  <script>
+    function showRecipe(item) {
+      const infoBox = document.getElementById('info-box');
+      const itemTitle = document.getElementById('item-title');
+      const itemDetails = document.getElementById('item-details');
+
+      if(item === 'fruit-salad') {
+        itemTitle.textContent = 'Fruit Salad';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup chopped fruits (apple, banana, grapes, etc.)</li>
+            <li>1/4 cup yogurt</li>
+            <li>1 tbsp honey</li>
+            <li>1 tbsp lemon juice</li>
+            <li>Mint leaves for garnish</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Cut the fruits into bite-sized pieces.</p>
+          <p>2. Mix all ingredients in a bowl.</p>
+          <p>3. Serve chilled with mint leaves.</p>
+          <img src="https://www.allrecipes.com/thmb/mGecJKNyVR8falSfCUfnK1-PS7Q=/0x512/filters:no_upscale():max_bytes(150000):strip_icc()/214947-perfect-summer-fruit-salad-ddmfs-3x4-0663-30f68a9db5a442b9a860d88ba5ec6f78.jpg" alt="Fruit Salad">
+        `;
+      } else if(item === 'fruit-juice') {
+        itemTitle.textContent = 'Fruit Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mixed fruits (orange, mango, pineapple)</li>
+            <li>1 tbsp honey</li>
+            <li>1/2 cup water</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend fruits and water together in a blender.</p>
+          <p>2. Strain juice if needed.</p>
+          <p>3. Add honey and mix well. Serve chilled.</p>
+          <img src="https://s7ap1.scene7.com/is/image/itcportalstage/fruit-juices-for-health?fmt=webp-alpha" alt="Fruit Juice">
+        `;
+      } else if(item === 'smoothie') {
+        itemTitle.textContent = 'Smoothie';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 banana</li>
+            <li>1/2 cup yogurt</li>
+            <li>1/2 cup mixed berries</li>
+            <li>1 tbsp honey</li>
+            <li>1/2 cup almond milk</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend all ingredients together until smooth.</p>
+          <p>2. Pour into a glass and serve chilled.</p>
+          <img src="https://www.eatingwell.com/thmb/EMLwettAIr9RNoPpDrYBM7goPX0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/healthy-breakfast-smoothie-8029983-4000x2700-af8c4d4b95ef4cd29080a86c1d9528ef.jpg" alt="Smoothie">
+        `;
+      } else if(item === 'fruit-chaat') {
+        itemTitle.textContent = 'Fruit Chaat';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup chopped fruits (apple, pomegranate, cucumber)</li>
+            <li>1 tsp chaat masala</li>
+            <li>1 tsp lemon juice</li>
+            <li>1/2 tsp black salt</li>
+            <li>Fresh coriander leaves for garnish</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Cut the fruits and mix them in a bowl.</p>
+          <p>2. Add chaat masala, black salt, and lemon juice.</p>
+          <p>3. Toss well and garnish with coriander leaves.</p>
+          <img src="https://www.shutterstock.com/image-photo/fruit-tangy-by-combining-chilled-260nw-1903422322.jpg" alt="Fruit Chaat">
+        `;
+      } else if(item === 'fruit-pudding') {
+        itemTitle.textContent = 'Fruit Pudding';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup chopped fruits (apple, banana, pineapple)</li>
+            <li>1/2 cup milk</li>
+            <li>2 tbsp sugar</li>
+            <li>2 tbsp custard powder</li>
+            <li>1/4 cup fresh cream</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Mix the custard powder and sugar in milk and cook until thickened.</p>
+          <p>2. Add the chopped fruits to the pudding mixture.</p>
+          <p>3. Chill for an hour and serve with cream on top.</p>
+          <img src="https://thumbs.dreamstime.com/b/sweets-fruit-pudding-sweets-fruit-pudding-white-blue-background-ai-generated-327494852.jpg" alt="Fruit Pudding">
+        `;
+      } else if(item === 'fruit-smoothie-bowl') {
+        itemTitle.textContent = 'Fruit Smoothie Bowl';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 banana</li>
+            <li>1/2 cup yogurt</li>
+            <li>1/4 cup granola</li>
+            <li>1/4 cup mixed fruits (berries, mango)</li>
+            <li>1 tsp chia seeds</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend the banana and yogurt to make a smooth base.</p>
+          <p>2. Pour into a bowl and top with fruits, granola, and chia seeds.</p>
+          <p>3. Serve chilled for a refreshing breakfast.</p>
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPE-oY15pYuoQ9F2B1ZwAWLbs6RFLIMmT-Wg&s" alt="Fruit Smoothie Bowl">
+        `;
+      } else if(item === 'fruit-ice-cream') {
+        itemTitle.textContent = 'Fruit Ice Cream';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mixed fruits (banana, mango, strawberry)</li>
+            <li>1/2 cup cream</li>
+            <li>1/4 cup condensed milk</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend the fruits and mix with cream and condensed milk.</p>
+          <p>2. Freeze the mixture for 6 hours.</p>
+          <p>3. Scoop and serve!</p>
+          <img src="https://healthyfitnessmeals.com/wp-content/uploads/2018/01/tropical-banana-ice-cream-e1721854828839.jpg" alt="Fruit Ice Cream">
+        `;
+      } else if(item === 'mango-lassi') {
+        itemTitle.textContent = 'Mango Lassi';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup mango pulp</li>
+            <li>1/2 cup yogurt</li>
+            <li>1/4 cup water</li>
+            <li>1 tbsp sugar</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend all ingredients until smooth.</p>
+          <p>2. Serve chilled for a refreshing drink.</p>
+          <img src="https://img.freepik.com/premium-photo/fresh-smoothie-mango-lassi-with-mango-fruit-isolated-white-background-studio-shot_741910-7382.jpg" alt="Mango Lassi">
+        `;
+      }
+      
+      infoBox.style.display = 'block';
+    }
+
+    function closeInfo() {
+      document.getElementById('info-box').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GourmetGuide Navbar</title>
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f8f9fa, #ffe4b3);
+    }
+
+    /* Navbar Styling */
+    .navbar {
+      width: 15%;
+      background: #092d6f;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
+      box-shadow: 3px 0 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .navbar a {
+      width: 90%;
+      text-decoration: none;
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      font-size: 1rem;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+    }
+
+    .navbar a:hover,
+    .navbar a.active {
+      background: #052364;
+      transform: translateX(10px);
+    }
+
+    .navbar a img {
+      width: 28px;
+      height: 28px;
+      margin-right: 15px;
+    }
+
+    /* Content Section */
+    .content {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .section {
+      display: none;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Home Section Styles */
+    .welcome-container {
+      max-width: 600px;
+      margin: auto;
+      text-align: center;
+      color: #444;
+    }
+
+    .welcome-container h1 {
+      font-size: 2rem;
+      color: #092d6f;
+      margin-bottom: 10px;
+    }
+
+    .welcome-container p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .welcome-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      animation: bounceIn 1.2s ease-in-out;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .select-button {
+      margin-top: 20px;
+      padding: 12px 20px;
+      background-color: #092d6f;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .select-button:hover {
+      background-color: #052364;
+    }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a onclick="showSection('welcome')" class="nav-item">
+      <img src="https://img.icons8.com/fluency/48/home.png" alt="Home Icon">
+      Home
+    </a>
+    <a href="vegetables.html" class="nav-item">
+      <img src="https://img.icons8.com/fluency/48/tomato.png" alt="Vegetables Icon">
+      Vegetables
+    </a>
+    <a href="fruits.html" class="nav-item">
+      <img src="https://img.icons8.com/fluency/48/banana.png" alt="Fruits Icon">
+      Fruits
+    </a>
+    <a href="veg.html" class="nav-item">
+      <img src="https://img.icons8.com/color/48/vegetarian-food.png" alt="Veg Icon">
+      Veg Dishes
+    </a>
+    <a href="nonveg.html" class="nav-item">
+      <img src="https://img.icons8.com/fluency/48/chicken.png" alt="Non-Veg Icon">
+      Non-Veg Dishes
+    </a>
+    <a href="desserts.html" class="nav-item">
+      <img src="https://img.icons8.com/fluency/48/cake.png" alt="Desserts Icon">
+      Desserts
+    </a>
+  </div>
+
+  <div class="content">
+    <div id="welcome" class="section active">
+      <div class="welcome-container">
+        <h1>Welcome to GourmetGuide</h1>
+        <p>
+          Discover mouth-watering recipes, cooking tips, and culinary inspiration for every occasion.
+          Explore dishes made with the finest ingredients and learn the art of cooking with ease.
+        </p>
+        <img src="https://png.pngtree.com/element_our/png/20180918/chef-cooking-fried-chicken-and-delicious-sign-png_103460.jpg" alt="Cooking Illustration"><br><br>
+        <button class="select-button" onclick="window.location.href='select.html'">Select</button>
+
+        
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showSection(section) {
+      // Hide all sections
+      const sections = document.querySelectorAll('.section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      // Show the selected section
+      const activeSection = document.getElementById(section);
+      activeSection.classList.add('active');
+
+      // Deselect all nav items
+      const navItems = document.querySelectorAll('.nav-item');
+      navItems.forEach(item => item.classList.remove('active'));
+
+      // Activate the clicked nav item
+      event.target.classList.add('active');
+    }
+  </script>
+</body>
+</html>

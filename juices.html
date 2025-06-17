@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juices and Milkshakes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .menu-item {
+      width: 200px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .menu-item img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+    #info-box {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      z-index: 1000;
+    }
+    #info-box h2 {
+      margin-top: 0;
+    }
+    #close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Juices and Milkshakes</h1>
+  <div class="menu">
+    <div class="menu-item" onclick="showRecipe('mango-juice')">
+      <img src="https://img.icons8.com/ios/100/000000/mango.png" alt="Mango Juice">
+      <h4>Mango Juice</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('apple-juice')">
+      <img src="https://img.icons8.com/ios/100/000000/apple.png" alt="Apple Juice">
+      <h4>Apple Juice</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('banana-juice')">
+      <img src="https://img.icons8.com/ios/100/000000/banana.png" alt="Banana Juice">
+      <h4>Banana Juice</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('butterscotch-milkshake')">
+      <img src="https://img.icons8.com/ios/100/000000/milk-shake.png" alt="Butterscotch Milkshake">
+      <h4>Butterscotch Milkshake</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('chocolate-milkshake')">
+      <img src="https://img.icons8.com/ios/100/000000/chocolate.png" alt="Chocolate Milkshake">
+      <h4>Chocolate Milkshake</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('strawberry-milkshake')">
+      <img src="https://img.icons8.com/ios/100/000000/strawberry.png" alt="Strawberry Milkshake">
+      <h4>Strawberry Milkshake</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('vanilla-milkshake')">
+      <img src="https://img.icons8.com/ios/100/000000/vanilla.png" alt="Vanilla Milkshake">
+      <h4>Vanilla Milkshake</h4>
+    </div>
+    <div class="menu-item" onclick="showRecipe('pineapple-juice')">
+      <img src="https://img.icons8.com/ios/100/000000/pineapple.png" alt="Pineapple Juice">
+      <h4>Pineapple Juice</h4>
+    </div>
+  </div>
+
+  <div id="info-box">
+    <div id="close-btn" onclick="closeInfo()">&#10006;</div>
+    <h2 id="item-title"></h2>
+    <div id="item-details"></div>
+  </div>
+
+  <script>
+    function showRecipe(item) {
+      const infoBox = document.getElementById('info-box');
+      const itemTitle = document.getElementById('item-title');
+      const itemDetails = document.getElementById('item-details');
+
+      if(item === 'mango-juice') {
+        itemTitle.textContent = 'Mango Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 ripe mangoes, peeled and chopped</li>
+            <li>1 cup water or milk</li>
+            <li>2 tbsp sugar (optional)</li>
+            <li>Ice cubes</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend mangoes with water or milk until smooth.</p>
+          <p>2. Add sugar and ice cubes, blend again.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/mango.png" alt="Mango Juice">
+        `;
+      } else if(item === 'apple-juice') {
+        itemTitle.textContent = 'Apple Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>3 apples, peeled and chopped</li>
+            <li>1/2 cup water</li>
+            <li>1 tbsp lemon juice</li>
+            <li>Ice cubes</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend apples with water until smooth.</p>
+          <p>2. Add lemon juice and ice cubes, blend again.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/apple.png" alt="Apple Juice">
+        `;
+      } else if(item === 'banana-juice') {
+        itemTitle.textContent = 'Banana Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 ripe bananas</li>
+            <li>1 cup milk</li>
+            <li>1 tbsp honey or sugar</li>
+            <li>Ice cubes</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend bananas with milk until smooth.</p>
+          <p>2. Add honey or sugar and blend again.</p>
+          <p>3. Serve chilled with ice cubes.</p>
+          <img src="https://img.icons8.com/ios/100/000000/banana.png" alt="Banana Juice">
+        `;
+      } else if(item === 'butterscotch-milkshake') {
+        itemTitle.textContent = 'Butterscotch Milkshake';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 cups vanilla ice cream</li>
+            <li>1 cup milk</li>
+            <li>2 tbsp butterscotch syrup</li>
+            <li>Whipped cream (optional)</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend vanilla ice cream with milk and butterscotch syrup.</p>
+          <p>2. Pour into a glass and top with whipped cream if desired.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/milk-shake.png" alt="Butterscotch Milkshake">
+        `;
+      } else if(item === 'chocolate-milkshake') {
+        itemTitle.textContent = 'Chocolate Milkshake';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 cups vanilla ice cream</li>
+            <li>1 cup milk</li>
+            <li>3 tbsp chocolate syrup</li>
+            <li>Whipped cream (optional)</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend vanilla ice cream with milk and chocolate syrup.</p>
+          <p>2. Pour into a glass and top with whipped cream if desired.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/chocolate.png" alt="Chocolate Milkshake">
+        `;
+      } else if(item === 'strawberry-milkshake') {
+        itemTitle.textContent = 'Strawberry Milkshake';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 cups fresh strawberries</li>
+            <li>1 cup milk</li>
+            <li>2 tbsp sugar</li>
+            <li>Ice cubes</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend strawberries with milk and sugar until smooth.</p>
+          <p>2. Add ice cubes and blend again.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/strawberry.png" alt="Strawberry Milkshake">
+        `;
+      } else if(item === 'vanilla-milkshake') {
+        itemTitle.textContent = 'Vanilla Milkshake';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>2 cups vanilla ice cream</li>
+            <li>1 cup milk</li>
+            <li>1 tsp vanilla extract</li>
+            <li>Whipped cream (optional)</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend vanilla ice cream with milk and vanilla extract.</p>
+          <p>2. Pour into a glass and top with whipped cream if desired.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/vanilla.png" alt="Vanilla Milkshake">
+        `;
+      } else if(item === 'pineapple-juice') {
+        itemTitle.textContent = 'Pineapple Juice';
+        itemDetails.innerHTML = `
+          <h3>Ingredients:</h3>
+          <ul>
+            <li>1 cup pineapple chunks</li>
+            <li>1/2 cup water or coconut water</li>
+            <li>1 tbsp honey</li>
+            <li>Ice cubes</li>
+          </ul>
+          <h3>Procedure:</h3>
+          <p>1. Blend pineapple chunks with water or coconut water.</p>
+          <p>2. Add honey and ice cubes, blend again.</p>
+          <p>3. Serve chilled.</p>
+          <img src="https://img.icons8.com/ios/100/000000/pineapple.png" alt="Pineapple Juice">
+        `;
+      }
+
+      infoBox.style.display = 'block';
+    }
+
+    function closeInfo() {
+      document.getElementById('info-box').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>

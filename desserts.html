@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GourmetGuide - Desserts</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #f8f9fa, #ffe4b3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .dessert-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .dessert-item {
+      text-align: center;
+      width: 200px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out;
+      animation: fadeIn 0.5s ease-in-out;
+      cursor: pointer;
+    }
+
+    .dessert-item:hover {
+      transform: translateY(-10px);
+    }
+
+    .dessert-item img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 15px;
+      border-radius: 50%;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .dessert-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .dessert-item h3 {
+      font-size: 1.2rem;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .dessert-item p {
+      color: #666;
+      font-size: 1rem;
+    }
+
+    /* Dessert info box styling */
+    .dessert-info {
+      display: none;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.15);
+      width: 80%;
+      max-width: 600px;
+      margin: 20px auto;
+      position: relative;
+      overflow-y: auto;
+      max-height: 500px;
+      transition: all 0.3s ease;
+    }
+
+    .dessert-info h2 {
+      font-size: 1.8rem;
+      color: #333;
+      margin-bottom: 15px;
+    }
+
+    .dessert-info h4 {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .dessert-info ul,
+    .dessert-info ol {
+      margin-left: 20px;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .dessert-info ul li,
+    .dessert-info ol li {
+      margin-bottom: 8px;
+    }
+
+    .dessert-info img {
+      width: 100%;
+      height: auto;
+      margin-top: 15px;
+      border-radius: 10px;
+    }
+
+    /* Close button for info */
+    .close-info {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: transparent;
+      border: none;
+      font-size: 1.8rem;
+      color: #ff6347;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-info:hover {
+      color: #ff4500;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="dessert-container">
+    <div class="dessert-item" onclick="showInfo('cupcake')">
+      <img src="https://img.icons8.com/ios/50/000000/cupcake.png" alt="Cupcake">
+      <h3>Cupcake</h3>
+      <p>Delicious, soft, and fluffy cupcakes for any occasion!</p>
+    </div>
+    <div class="dessert-item" onclick="showInfo('ice-cream')">
+      <img src="data:image/png;base64,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" alt="Ice Cream">
+      <h3>Ice Cream</h3>
+      <p>Cool off with a scoop of creamy and refreshing ice cream.</p>
+    </div>
+    <div class="dessert-item" onclick="showInfo('pie')">
+      <img src="https://img.icons8.com/ios/50/000000/pie.png" alt="Pie">
+      <h3>Pie</h3>
+      <p>Tasty and baked to perfection, ideal for your sweet tooth.</p>
+    </div>
+    <div class="dessert-item" onclick="showInfo('chocolate')">
+      <img src="data:image/png;base64,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" alt="Chocolate">
+      <h3>Chocolate</h3>
+      <p>Rich and creamy chocolate, the ultimate indulgence.</p>
+    </div>
+    <div class="dessert-item" onclick="showInfo('cookie')">
+      <img src="https://img.icons8.com/ios/50/000000/cookie.png" alt="Cookie">
+      <h3>Cookie</h3>
+      <p>Chewy, warm, and perfect with a glass of milk.</p>
+    </div>
+  </div>
+
+  <!-- Dessert Info Sections -->
+  <div id="cupcake-info" class="dessert-info">
+    <button class="close-info" onclick="closeInfo('cupcake')">×</button>
+    <h2>Cupcake Recipe</h2>
+    <h4>Ingredients:</h4>
+    <ul>
+      <li>1 1/2 cups flour</li>
+      <li>1 cup sugar</li>
+      <li>1/2 cup butter</li>
+      <li>2 eggs</li>
+      <li>1 tsp vanilla</li>
+      <li>1 tsp baking powder</li>
+      <li>1/2 cup milk</li>
+    </ul>
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Preheat the oven to 350°F (175°C).</li>
+      <li>Mix all dry ingredients in one bowl and wet ingredients in another.</li>
+      <li>Combine both, pour into cupcake liners, and bake for 20 minutes.</li>
+    </ol>
+    <img src="https://handletheheat.com/wp-content/uploads/2016/02/best-chocolate-cupcakes-recipe-SQUARE.jpg" alt="Cupcake Image">
+  </div>
+
+  <div id="ice-cream-info" class="dessert-info">
+    <button class="close-info" onclick="closeInfo('ice-cream')">×</button>
+    <h2>Ice Cream Recipe</h2>
+    <h4>Ingredients:</h4>
+    <ul>
+      <li>2 cups heavy cream</li>
+      <li>1 cup milk</li>
+      <li>3/4 cup sugar</li>
+      <li>1 tsp vanilla</li>
+    </ul>
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Combine all ingredients and mix well.</li>
+      <li>Freeze in an ice cream maker for 30 minutes, then serve!</li>
+    </ol>
+    <img src="https://th.bing.com/th/id/R.8a6880b78938d470337448c85a4a5a62?rik=fRXTzRmMCANJBg&riu=http%3a%2f%2fwallpapercave.com%2fwp%2fnN83CjZ.jpg&ehk=VlEL%2fmofCpu3Jav3zGOYSzETJsaCrON5mxWzIAv3cdw%3d&risl=&pid=ImgRaw&r=0" alt="Ice Cream Image">
+  </div>
+
+  <div id="pie-info" class="dessert-info">
+    <button class="close-info" onclick="closeInfo('pie')">×</button>
+    <h2>Pie Recipe</h2>
+    <h4>Ingredients:</h4>
+    <ul>
+      <li>2 cups flour</li>
+      <li>1/2 cup butter</li>
+      <li>1 cup sugar</li>
+      <li>3 eggs</li>
+    </ul>
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Mix all ingredients and roll dough to fit the pie tin.</li>
+      <li>Bake for 45 minutes at 350°F (175°C) or until golden brown.</li>
+    </ol>
+    <img src="https://www.cheaprecipeblog.com/wp-content/uploads/2021/01/Mini-pies-made-in-a-bowl.jpg" alt="Pie Image">
+  </div>
+
+  <div id="chocolate-info" class="dessert-info">
+    <button class="close-info" onclick="closeInfo('chocolate')">×</button>
+    <h2>Chocolate Recipe</h2>
+    <h4>Ingredients:</h4>
+    <ul>
+      <li>1 cup cocoa powder</li>
+      <li>1 cup butter</li>
+      <li>1 cup sugar</li>
+      <li>2 eggs</li>
+    </ul>
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Mix all ingredients, and bake at 350°F (175°C) for 15 minutes.</li>
+    </ol>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUPhNKjBCj3j28C7sEqVkxy5cXlUj7L5yn3w&s" alt="Chocolate Image">
+  </div>
+
+  <div id="cookie-info" class="dessert-info">
+    <button class="close-info" onclick="closeInfo('cookie')">×</button>
+    <h2>Cookie Recipe</h2>
+    <h4>Ingredients:</h4>
+    <ul>
+      <li>1 cup flour</li>
+      <li>1/2 cup butter</li>
+      <li>1 cup chocolate chips</li>
+      <li>1 cup sugar</li>
+      <li>2 eggs</li>
+    </ul>
+    <h4>Instructions:</h4>
+    <ol>
+      <li>Preheat oven to 350°F (175°C).</li>
+      <li>Mix ingredients and form dough into balls.</li>
+      <li>Bake for 10-12 minutes.</li>
+    </ol>
+    <img src="https://www.shutterstock.com/image-photo/freshly-baked-chocolate-chip-cookie-600nw-2506357917.jpg" alt="Cookie Image">
+  </div>
+
+  <script>
+    function showInfo(dessert) {
+      const allInfo = document.querySelectorAll('.dessert-info');
+      allInfo.forEach(info => info.style.display = 'none');
+      document.getElementById(dessert + '-info').style.display = 'block';
+    }
+
+    function closeInfo(dessert) {
+      document.getElementById(dessert + '-info').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
