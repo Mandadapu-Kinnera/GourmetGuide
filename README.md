@@ -22,3 +22,13 @@ GourmetGuide/
 
 
 
+## Installation & Setup
+
+Follow these steps to run this project locally:
+
+## 1. Clone the repository
+
+git clone https://github.com/Mandadapu-Kinnera/GourmetGuide.git
+cd GourmetGuide
+
+
